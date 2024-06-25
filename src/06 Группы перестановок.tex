@@ -1,0 +1,97 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{school}
+
+\begin{document}
+    \head{9 ноября}{Группы перестановок}
+    
+    \section{Разбор}
+    
+    \defn Пусть $n$ --- натуральное число. За $X$ обозначим множество $\{1,2,\ldots,n\}$. \emph{Группа перестановок} или \emph{симметрическая группа} $S_n$ --- множество всех биекций $\sigma \colon X \to X$, с операцией композиции.
+    
+    \problem Сколько элементов в $S_n$?
+    \begin{solution}
+        $n!$, смотри листок 04.
+    \end{solution}
+    
+    Перестановку $\sigma \in S_n$ можно записывать следующим образом.\\
+    \begin{equation*}
+        \begin{pmatrix}
+            1 & 2 & 3 & \ldots & n-1 & n \\
+            \sigma(1) & \sigma(2) & \sigma(3) & \ldots & \sigma(n-1) & \sigma(n)
+        \end{pmatrix}
+    \end{equation*}
+    
+    \problem Постройте таблицы умножения для $S_1$ и $S_2$.
+    \begin{center}
+        \begin{equation*}
+            \begin{array}{c||c}
+                \circ   & \begin{smallpmatrix}1\\1\end{smallpmatrix}\\\hline \hline
+                \begin{smallpmatrix}1\\1\end{smallpmatrix} & \begin{smallpmatrix}1\\1\end{smallpmatrix}
+            \end{array}\qquad
+            \begin{array}{c||c|c}
+                \circ   & \begin{smallpmatrix}1&2\\1&2\end{smallpmatrix} & \begin{smallpmatrix}1&2\\2&1\end{smallpmatrix}\\\hline \hline
+                \begin{smallpmatrix}1&2\\1&2\end{smallpmatrix} & \begin{smallpmatrix}1&2\\1&2\end{smallpmatrix} & \begin{smallpmatrix}1&2\\2&1\end{smallpmatrix}\\\hline
+                \begin{smallpmatrix}1&2\\2&1\end{smallpmatrix} & \begin{smallpmatrix}1&2\\2&1\end{smallpmatrix} & \begin{smallpmatrix}1&2\\1&2\end{smallpmatrix}
+            \end{array}
+        \end{equation*}
+    \end{center}
+    
+    \problem Вычислите: \\
+    \sub $\begin{smallpmatrix}1&2&3\\2&1&3\end{smallpmatrix} \begin{smallpmatrix}1&2&3\\1&3&2\end{smallpmatrix} = \begin{smallpmatrix}1&2&3\\2&3&1\end{smallpmatrix}$ \vspace{5pt} \\
+    \sub $\begin{smallpmatrix}1&2&3\\3&2&1\end{smallpmatrix}^2 = \begin{smallpmatrix}1&2&3\\1&2&3\end{smallpmatrix}$ \vspace{5pt} \\
+    \sub $\begin{smallpmatrix}1&2&3\\2&3&1\end{smallpmatrix}^2 = \begin{smallpmatrix}1&2&3\\3&1&2\end{smallpmatrix}$ \vspace{5pt} \\
+    \sub $\begin{smallpmatrix}1&2&3\\2&3&1\end{smallpmatrix}^3 = \begin{smallpmatrix}1&2&3\\1&2&3\end{smallpmatrix}$ \vspace{5pt} \\
+    \sub $\begin{smallpmatrix}1&2&3&4\\2&3&4&1\end{smallpmatrix}^2 = \begin{smallpmatrix}1&2&3&4\\3&4&1&2\end{smallpmatrix}$ \vspace{5pt} \\
+    \sub $\begin{smallpmatrix}1&2&3&4\\2&3&4&1\end{smallpmatrix}^4 = \begin{smallpmatrix}1&2&3&4\\1&2&3&4\end{smallpmatrix}$ \vspace{5pt} \\
+    \sub $\begin{smallpmatrix}1&2&3&4&5\\3&5&4&1&2\end{smallpmatrix} \begin{smallpmatrix}1&2&3&4&5\\4&5&3&1&2\end{smallpmatrix} = \begin{smallpmatrix}1&2&3&4&5\\1&2&4&3&5\end{smallpmatrix}$.
+    
+    \problem \sub Какие числа можно получить, применяя к числу $x = 3$ несколько раз перестановку $\sigma = \begin{smallpmatrix}1&2&3&4&5\\3&5&4&1&2\end{smallpmatrix}$? \\
+    \sub Тот же вопрос для $x = 2$. \\
+    \sub Тот же вопрос для $x = 1$.
+    \begin{solution}
+        \sub 1, 3, 4; \sub 5, 2; \sub 1, 3, 4.
+    \end{solution}
+    
+    \defn Множество чисел, которые можно получить, применяя несколько раз $\sigma$ к $x$ будем называть \emph{орбитой $x$ под действием $\sigma$} и обозначать $\langle\sigma\rangle x$.
+    
+    \defn Перестановка $\sigma$ называется циклической, если она переставляет по циклу часть элементов и оставляет на месте все остальные.
+    
+    \problem Какие из следующих перестановок циклические? \\
+    \sub $\begin{smallpmatrix}1&2&3\\3&2&1\end{smallpmatrix}$;
+    \sub $\begin{smallpmatrix}1&2&3&4\\3&2&1&4\end{smallpmatrix}$;
+    \sub $\begin{smallpmatrix}1&2&3&4\\2&1&4&3\end{smallpmatrix}$;
+    \sub \label{134_cycle} $\begin{smallpmatrix}1&2&3&4&5\\3&2&4&1&5\end{smallpmatrix}$.
+    \begin{solution}
+        \sub да; \sub да; \sub нет; \sub да.
+    \end{solution}
+    \problem Как охарактеризовать циклические перестановки в терминах орбит?
+    \begin{solution}
+        Перестановка является циклической, если и только если у неё не более одной нетривиальной (то есть из более, чем одного элемента) орбиты.
+    \end{solution}
+    
+    Вы можете заметить, что способ записи как выше --- довольно неэкономный, особенно для больших $n$. Поэтому для циклических перестановок есть и другое общепринятое обозначение: $\cycle{x_1,\ldots,x_k}$. Например, перестановка из задачи \ref{134_cycle} может быть обозначена $\cycle{1,3,4}$. Как обычно, тождественную перестановку $\begin{smallpmatrix}1&2&\ldots&n\\1&2&\ldots&n\end{smallpmatrix} \in S_n$ принято обозначать $e_{S_n}$ ($S_n$ здесь --- нижний индекс) или просто $e$, если понятно, о какой именно группе речь.
+    
+    \problem Выпишите все элементы $S_3$ в циклической записи.
+    \begin{solution}
+        $e$, $\cycle{1,2}$, $\cycle{2,3}$, $\cycle{1,3}$, $\cycle{1,2,3}$, $\cycle{1,3,2}$.
+    \end{solution}
+    
+    \section{Задачи для самостоятельного решения}
+    
+    \problem Запишите все элементы $S_4$, как произведения циклических.
+    \problem Выпишите все элементы $S_5$, не являющиеся циклическими.
+    \problem Вычислите: \\
+    \sub $\cycle{1,2,3,4}\cycle{4,3,2,1}$ \\
+    \sub $\cycle{1,2,3}\cycle{3,4}$ \\
+    \sub $\cycle{1,2}\cycle{2,3}$ \\
+    \sub $\cycle{2,3}\cycle{1,2}$ \\
+    \sub $\cycle{1,2,3,4}\cycle{3,2}$ \\
+    \sub $\cycle{1,2,3,4}\cycle{2,5,4,6}$.
+    \Problem{за каждый пункт 0.5} Опишите орбиты для результатов вычисления из предыдущей задачи.
+    \Problem{2} Составьте таблицу умножения для $S_3$. Знакома ли вам эта таблица?
+    
+    \defn \emph{Порядком} элемента группы $g \in G$ называется наименьшее натуральное число $d \in \N$, такое что $g^d = e$.
+    
+    \problem Найдите порядки всех элементов \sub $S_3$; \Sub{2} $S_4$; \sub $Sym(P_4)$ (группа симметрий квадрата, смотри предыдущий листок); \Sub{3} $Sym(P_{2n})$.
+\end{document} 
